@@ -34,7 +34,11 @@ function dateToTimestamp(date) {
  */
 function getTime(date) {
   const date1 = new Date(date);
-  return date1.toLocaleTimeString();
+  return new Intl.DateTimeFormat('en-GB', {
+    hour: '2-digit',
+    minute: 'numeric',
+    second: 'numeric',
+  }).format(date1);
 }
 
 /**
@@ -48,8 +52,13 @@ function getTime(date) {
  * '03 Dec 1995 00:12:00 UTC' => 'Sunday'
  * '2024-01-30T00:00:00.000Z' => 'Tuesday'
  */
-function getDayName(/* date */) {
-  throw new Error('Not implemented');
+function getDayName(date) {
+  const date1 = new Date(date);
+  const formatter = new Intl.DateTimeFormat('en-GB', {
+    weekday: 'long',
+    timeZone: 'UTC',
+  });
+  return formatter.format(date1);
 }
 
 /**
