@@ -128,6 +128,17 @@ function getCountDaysOnPeriod(dateStart, dateEnd) {
  */
 function isDateInPeriod(/* date, period */) {
   throw new Error('Not implemented');
+  /* const date1 = new Date(date);
+  const date2 = date1.toJSON();
+  const period1 = new Date(period);
+  const period2 = period1.toJSON();
+  const period3 = String(typeof period2).split(',');
+  const start = new Date(period3[0]);
+  const end = new Date(period3[1]);
+  if (date2 >= start && date2 <= end) {
+    return true;
+  }
+  return false; */
 }
 
 /**
@@ -141,8 +152,19 @@ function isDateInPeriod(/* date, period */) {
  * '1999-01-05T02:20:00.000Z' => '1/5/1999, 2:20:00 AM'
  * '2010-12-15T22:59:00.000Z' => '12/15/2010, 10:59:00 PM'
  */
-function formatDate(/* date */) {
-  throw new Error('Not implemented');
+function formatDate(date) {
+  const date1 = new Date(date);
+  const options = {
+    month: 'numeric',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hour12: true,
+    timeZone: 'UTC',
+  };
+  return date1.toLocaleDateString('en-US', options);
 }
 
 /**
@@ -203,8 +225,19 @@ function getNextFridayThe13th(/* date */) {
  * Date(2024, 5, 1) => 2
  * Date(2024, 10, 10) => 4
  */
-function getQuarter(/* date */) {
-  throw new Error('Not implemented');
+function getQuarter(date) {
+  const date1 = new Date(date);
+  const month = date1.getMonth();
+  if (month <= 3) {
+    return 1;
+  }
+  if (month <= 6) {
+    return 2;
+  }
+  if (month <= 9) {
+    return 3;
+  }
+  return 4;
 }
 
 /**
